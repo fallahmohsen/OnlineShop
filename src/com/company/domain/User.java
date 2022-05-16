@@ -13,11 +13,13 @@ public class User {
     public User() {
     }
 
-    public User( String username, String password) {
-
+    public User(String username, String password, String name, String family, int mobileNumber, String email) {
         this.username = username;
         this.password = password;
-
+        this.name = name;
+        this.family = family;
+        this.mobileNumber = mobileNumber;
+        this.email = email;
     }
 
     @Override
@@ -25,8 +27,14 @@ public class User {
         return "User{" +
                 "username='" + username + '\'' +
                 ", password='" + password + '\'' +
+                ", name='" + name + '\'' +
+                ", family='" + family + '\'' +
+                ", mobileNumber=" + mobileNumber +
+                ", email='" + email + '\'' +
                 '}';
     }
+
+
 
     public int getId() {
         return id;

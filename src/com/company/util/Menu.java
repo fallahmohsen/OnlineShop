@@ -18,4 +18,22 @@ public class Menu {
     public void showSuccessfulLogin(){
         System.out.println("Successful login");
     }
+    public void showLoginFail() {
+        System.out.println("username or password is incorrect");
+    }
+    public  void getName(){
+        System.out.println("plz enter your name");
+    }
+    public  void getFamily(){
+        System.out.println("plz enter your family");
+    }
+    public void getMobileNumber(){
+        System.out.println("plz enter your mobile number");
+    }
+    public void getEmail(){
+        System.out.println("plz enter your email");
+    }
+
+
+
 }

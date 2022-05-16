@@ -14,6 +14,10 @@ public class UserRepository {
         this.connection = connection;
     }
 
+    public UserRepository() {
+
+    }
+
     public User getByUsernameAndPassword(String username, String password) throws SQLException {
         String query = "select * from user where username = ? and password = ?";
         PreparedStatement preparedStatement = connection.prepareStatement(query);
@@ -23,11 +27,34 @@ public class UserRepository {
         if (resultSet.next()) {
             return new User(
                     resultSet.getString(1),
-                    resultSet.getString(2)
+                    resultSet.getString(2),
+                    resultSet.getString(3),
+                    resultSet.getString(4),
+                    resultSet.getInt(5),
+                    resultSet.getString(6)
+
 
             );
         }
 
         return null;
     }
+
+    public User insert(User user) throws SQLException {
+        String insertQuery = "insert into user(" +
+                "username,password,name,family,mobile_number,email" +
+                ") values (?,?,?,?,?,?)";
+
+        PreparedStatement preparedStatement =
+                connection.prepareStatement(insertQuery);
+        preparedStatement.setString(1, user.getUsername());
+        preparedStatement.setString(2, user.getPassword());
+        preparedStatement.setString(3, user.getName());
+        preparedStatement.setString(4, user.getFamily());
+        preparedStatement.setInt(5, user.getMobileNumber());
+        preparedStatement.setString(6, user.getEmail());
+        preparedStatement.executeUpdate();
+        return user;
+    }
+
 }
