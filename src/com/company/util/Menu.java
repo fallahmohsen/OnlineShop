@@ -9,4 +9,13 @@ public class Menu {
         System.out.println("3.exit");
 
     }
+    public  void showInformationLoginUsername(){
+        System.out.println("enter your username:");
+    }
+    public  void  showInformationLoginPassword(){
+        System.out.println("enter your password:");
+    }
+    public void showSuccessfulLogin(){
+        System.out.println("Successful login");
+    }
 }

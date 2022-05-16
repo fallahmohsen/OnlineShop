@@ -13,14 +13,19 @@ public class User {
     public User() {
     }
 
-    public User(int id, String username, String password, String name, String family, int mobileNumber, String email) {
-        this.id = id;
+    public User( String username, String password) {
+
         this.username = username;
         this.password = password;
-        this.name = name;
-        this.family = family;
-        this.mobileNumber = mobileNumber;
-        this.email = email;
+
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                '}';
     }
 
     public int getId() {
