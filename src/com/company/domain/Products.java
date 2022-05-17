@@ -10,8 +10,18 @@ public class Products {
     public Products() {
     }
 
-    public Products(int id, String category, String nameProducts, int inventory, int price) {
-        this.id = id;
+    @Override
+    public String toString() {
+        return "Products{" +
+                "category='" + category + '\'' +
+                ", nameProducts='" + nameProducts + '\'' +
+                ", inventory=" + inventory +
+                ", price=" + price +
+                '}';
+    }
+
+    public Products( String category, String nameProducts, int inventory, int price) {
+
         this.category = category;
         this.nameProducts = nameProducts;
         this.inventory = inventory;

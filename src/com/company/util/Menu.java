@@ -52,6 +52,8 @@ public class Menu {
     public void getPostalCode(){
         System.out.println("enter your postal code ");
     }
-
+    public  void showAllProduct() {
+        System.out.println("all of products");
+    }
 
 }
