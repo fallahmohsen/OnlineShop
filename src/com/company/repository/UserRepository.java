@@ -27,13 +27,7 @@ public class UserRepository {
         if (resultSet.next()) {
             return new User(
                     resultSet.getString(1),
-                    resultSet.getString(2),
-                    resultSet.getString(3),
-                    resultSet.getString(4),
-                    resultSet.getInt(5),
-                    resultSet.getString(6)
-
-
+                    resultSet.getString(2)
             );
         }
 

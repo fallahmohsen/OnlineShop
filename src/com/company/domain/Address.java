@@ -11,6 +11,17 @@ public class Address {
     public Address() {
     }
 
+    @Override
+    public String toString() {
+        return "Address{" +
+                "homeAddress='" + homeAddress + '\'' +
+                ", state='" + state + '\'' +
+                ", city='" + city + '\'' +
+                ", streetName='" + streetName + '\'' +
+                ", postalCode=" + postalCode +
+                '}';
+    }
+
     public Address(int id, String homeAddress, String state, String city, String streetName, int postalCode) {
         this.id = id;
         this.homeAddress = homeAddress;

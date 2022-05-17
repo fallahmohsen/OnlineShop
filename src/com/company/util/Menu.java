@@ -1,5 +1,9 @@
 package com.company.util;
 
+import com.sun.xml.internal.ws.api.model.wsdl.WSDLOutput;
+
+import java.util.jar.JarOutputStream;
+
 public class Menu {
     public void showFirstMenu(){
         System.out.println("welcome to online shop");
@@ -33,7 +37,21 @@ public class Menu {
     public void getEmail(){
         System.out.println("plz enter your email");
     }
-
+    public void getHomeAddress(){
+        System.out.println("enter your address");
+    }
+    public  void getState(){
+        System.out.println("plz write your state");
+    }
+    public void getCity(){
+        System.out.println("plz write your city");
+    }
+    public void getStreetName(){
+        System.out.println("plz write your street name");
+    }
+    public void getPostalCode(){
+        System.out.println("enter your postal code ");
+    }
 
 
 }

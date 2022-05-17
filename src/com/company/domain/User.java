@@ -84,6 +84,11 @@ public class User {
         this.mobileNumber = mobileNumber;
     }
 
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
     public String getEmail() {
         return email;
     }
