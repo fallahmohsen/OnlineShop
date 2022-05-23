@@ -1,8 +1,10 @@
 package com.company.util;
 
 import com.company.domain.Address;
-import com.company.domain.Products;
+
+import com.company.domain.Basket;
 import com.company.repository.AddressRepository;
+import com.company.repository.BasketRepository;
 import com.company.repository.ProductsRepository;
 import com.company.repository.UserRepository;
 
@@ -13,6 +15,7 @@ public class ShopContext {
     private UserRepository userRepository = null;
     private  AddressRepository addressRepository = null;
     private  ProductsRepository productsRepository = null;
+    private BasketRepository basketRepository = null;
 
     public ShopContext() throws SQLException, ClassNotFoundException {
     }
@@ -35,4 +38,10 @@ public class ShopContext {
         }
         return productsRepository;
     }
-}
+    public BasketRepository getBasketRepository() {
+        if (basketRepository == null) {
+            this.basketRepository = new BasketRepository(databaseUtil.getConnection());
+        }
+        return basketRepository;
+    }
+    }

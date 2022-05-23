@@ -55,5 +55,16 @@ public class Menu {
     public  void showAllProduct() {
         System.out.println("all of products");
     }
+    public  void choseProduct(){
+        System.out.println("chose id product: ");
+    }
+    public  void numberOfProduct(){
+        System.out.println("enter your number of product");
+    }
+    public  void tryAgainAddCart(){
+        System.out.println("ٰwant to add to cart again");
+        System.out.println("1.yes");
+        System.out.println("2.no");
+    }
 
 }

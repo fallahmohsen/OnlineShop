@@ -1,8 +1,11 @@
 package com.company;
 
 import com.company.domain.Address;
-import com.company.domain.Products;
+import com.company.domain.Basket;
+import com.company.domain.Product;
+
 import com.company.domain.User;
+import com.company.repository.BasketRepository;
 import com.company.repository.ProductsRepository;
 import com.company.repository.UserRepository;
 import com.company.util.DatabaseUtil;
@@ -11,13 +14,14 @@ import com.company.util.ShopContext;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 
 public class Main {
     static Menu menu = new Menu();
     static Scanner scanner = new Scanner(System.in);
-    static ResultSet resultSet;
+
 
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
         DatabaseUtil databaseUtil = new DatabaseUtil();
@@ -30,20 +34,45 @@ public class Main {
         if (selectedNumber == 1) {
          login();
          showAllProducts();
+         addCart();
         }
         if(selectedNumber == 2){
             signUp();
         }
     }
 
+    private static void addCart() throws SQLException, ClassNotFoundException {
+        boolean flag = true;
+        while (flag) {
+            menu.choseProduct();
+            ShopContext context = new ShopContext();
+            Basket basket = new Basket();
+            basket.setId(scanner.nextInt());
+            menu.numberOfProduct();
+            basket.setNumberPurchases(scanner.nextInt());
+            basket = context.getBasketRepository().insertBasket(basket);
+            menu.tryAgainAddCart();
+            int selectNumber = scanner.nextInt();
+            if (selectNumber == 2) {
+                showAllCart();
+                flag = false;
+            }
+        }
+    }
+
+    private static void showAllCart() throws SQLException, ClassNotFoundException {
+      ShopContext context = new ShopContext();
+      BasketRepository basketRepository = new BasketRepository();
+      context.getBasketRepository().getCart();
+
+    }
+
     private static void showAllProducts() throws SQLException, ClassNotFoundException {
         menu.showAllProduct();
-        Products products = new Products();
+
         ShopContext context = new ShopContext();
         ProductsRepository productsRepository = new ProductsRepository();
-         context.getProductsRepository().getAllProducts();
-
-
+            context.getProductsRepository().getAllProducts();
 
             }
 

@@ -1,27 +1,28 @@
 package com.company.domain;
 
-public class Products {
+public class Product {
     private int id;
     private String category;
     private String nameProducts;
     private int inventory;
     private int price;
 
-    public Products() {
+    public Product() {
     }
 
     @Override
     public String toString() {
         return "Products{" +
-                "category='" + category + '\'' +
+                "id=" + id +
+                ", category='" + category + '\'' +
                 ", nameProducts='" + nameProducts + '\'' +
                 ", inventory=" + inventory +
                 ", price=" + price +
                 '}';
     }
 
-    public Products( String category, String nameProducts, int inventory, int price) {
-
+    public Product( int id,String category, String nameProducts, int inventory, int price) {
+        this.id = id;
         this.category = category;
         this.nameProducts = nameProducts;
         this.inventory = inventory;
