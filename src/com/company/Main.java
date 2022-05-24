@@ -36,6 +36,7 @@ public class Main {
             showAllProducts();
             addCart();
             deleteBasket();
+
         }
         if (selectedNumber == 2) {
             signUp();
@@ -67,6 +68,7 @@ public class Main {
     }
 
     private static void addCart() throws SQLException, ClassNotFoundException {
+        int data = 0;
         boolean flag = true;
         while (flag) {
             menu.choseProduct();
@@ -75,11 +77,18 @@ public class Main {
             basket.setId(scanner.nextInt());
             menu.numberOfProduct();
             basket.setNumberPurchases(scanner.nextInt());
-            basket = context.getBasketRepository().insertBasket(basket);
-            menu.tryAgainAddCart();
-            int selectNumber = scanner.nextInt();
-            if (selectNumber == 2) {
-                showAllCart();
+            data += basket.getNumberPurchases();
+            if(data <= 5) {
+                basket = context.getBasketRepository().insertBasket(basket);
+                menu.tryAgainAddCart();
+                int selectNumber = scanner.nextInt();
+                if (selectNumber == 2) {
+                    showAllCart();
+                    flag = false;
+                }
+            }
+            else {
+                menu.showMassageCartFull();
                 flag = false;
             }
         }

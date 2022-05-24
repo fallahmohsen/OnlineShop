@@ -78,4 +78,8 @@ public class Menu {
     public  void showMassageCalculatePrice(){
         System.out.println("The sum of the prices of the shopping cart is :");
     }
+    public  void showMassageCartFull(){
+        System.out.println("cart is full!!!");
+    }
+
 }
