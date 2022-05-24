@@ -1,6 +1,7 @@
 package com.company.util;
 
 import com.sun.xml.internal.ws.api.model.wsdl.WSDLOutput;
+import org.w3c.dom.ls.LSOutput;
 
 import java.util.jar.JarOutputStream;
 
@@ -66,5 +67,15 @@ public class Menu {
         System.out.println("1.yes");
         System.out.println("2.no");
     }
-
+    public void showMassageDelete(){
+        System.out.println("Do you want to delete the product?");
+        System.out.println("1.yes");
+        System.out.println("2.no");
+    }
+    public  void choseMassageDelete(){
+        System.out.println("chose your id product from delete");
+    }
+    public  void showMassageCalculatePrice(){
+        System.out.println("The sum of the prices of the shopping cart is :");
+    }
 }

@@ -33,13 +33,16 @@ public class Basket {
         this.nameProduct = nameProduct;
     }
 
+    public Basket(int id) {
+        this.price = price;
+    }
+
     public Basket(int id, int numberPurchases, int price, String nameProduct) {
         this.id = id;
         this.numberPurchases = numberPurchases;
         this.price = price;
         this.nameProduct = nameProduct;
     }
-
     public int getNumberPurchases() {
         return numberPurchases;
     }
@@ -51,9 +54,6 @@ public class Basket {
     public Basket(){
     }
 
-    public Basket(int id) {
-        this.id = id;
-    }
 
     public int getId() {
         return id;

@@ -32,13 +32,38 @@ public class Main {
         menu.showFirstMenu();
         int selectedNumber = scanner.nextInt();
         if (selectedNumber == 1) {
-         login();
-         showAllProducts();
-         addCart();
+            login();
+            showAllProducts();
+            addCart();
+            deleteBasket();
         }
-        if(selectedNumber == 2){
+        if (selectedNumber == 2) {
             signUp();
         }
+    }
+
+    private static void deleteBasket() throws SQLException, ClassNotFoundException {
+        Basket basket = new Basket();
+        menu.showMassageDelete();
+        int selectNumber = scanner.nextInt();
+        if (selectNumber == 1) {
+            ShopContext context = new ShopContext();
+            menu.choseMassageDelete();
+            showAllCart();
+            basket.setId(scanner.nextInt());
+            context.getBasketRepository().deleteBasket(basket);
+            showAllCart();
+            calculateAllPrice();
+        }
+        else {
+            calculateAllPrice();
+        }
+    }
+
+    private static void calculateAllPrice() throws SQLException, ClassNotFoundException {
+        menu.showMassageCalculatePrice();
+        ShopContext context = new ShopContext();
+        context.getBasketRepository().calculatePrice();
     }
 
     private static void addCart() throws SQLException, ClassNotFoundException {
@@ -61,9 +86,9 @@ public class Main {
     }
 
     private static void showAllCart() throws SQLException, ClassNotFoundException {
-      ShopContext context = new ShopContext();
-      BasketRepository basketRepository = new BasketRepository();
-      context.getBasketRepository().getCart();
+        ShopContext context = new ShopContext();
+        BasketRepository basketRepository = new BasketRepository();
+        context.getBasketRepository().getCart();
 
     }
 
@@ -72,9 +97,9 @@ public class Main {
 
         ShopContext context = new ShopContext();
         ProductsRepository productsRepository = new ProductsRepository();
-            context.getProductsRepository().getAllProducts();
+        context.getProductsRepository().getAllProducts();
 
-            }
+    }
 
     private static void signUp() throws SQLException, ClassNotFoundException {
         User user = new User();
@@ -110,8 +135,6 @@ public class Main {
         System.out.println(user);
         System.out.println(address);
         login();
-
-
 
 
     }
