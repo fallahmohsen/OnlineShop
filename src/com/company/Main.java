@@ -36,11 +36,17 @@ public class Main {
             showAllProducts();
             addCart();
             deleteBasket();
-
+            clearBasket();
         }
         if (selectedNumber == 2) {
             signUp();
         }
+    }
+
+    private static void clearBasket() throws SQLException, ClassNotFoundException {
+        ShopContext context = new ShopContext();
+        Basket basket = new Basket();
+        context.getBasketRepository().clearAllBasket(basket);
     }
 
     private static void deleteBasket() throws SQLException, ClassNotFoundException {

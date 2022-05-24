@@ -68,4 +68,10 @@ public class BasketRepository {
         }
         return basket;
     }
+    public Basket clearAllBasket(Basket basket) throws SQLException {
+        String query = "delete from basket";
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        preparedStatement.executeUpdate();
+        return basket;
+    }
 }
