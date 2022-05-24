@@ -81,5 +81,9 @@ public class Menu {
     public  void showMassageCartFull(){
         System.out.println("cart is full!!!");
     }
-
+    public  void getOutMassage(){
+        System.out.println("You want to get out");
+        System.out.println("1.yes");
+        System.out.println("2.no");
+    }
 }

@@ -35,7 +35,17 @@ public class Main {
             login();
             showAllProducts();
             addCart();
-            deleteBasket();
+            boolean flag = true;
+            while (flag) {
+
+
+                deleteBasket();
+                menu.getOutMassage();
+                int selectedNumber1 = scanner.nextInt();
+                if(selectedNumber1 == 1){
+                    flag = false;
+                }
+            }
             clearBasket();
         }
         if (selectedNumber == 2) {
@@ -50,27 +60,29 @@ public class Main {
     }
 
     private static void deleteBasket() throws SQLException, ClassNotFoundException {
-        Basket basket = new Basket();
-        menu.showMassageDelete();
-        int selectNumber = scanner.nextInt();
-        if (selectNumber == 1) {
-            ShopContext context = new ShopContext();
-            menu.choseMassageDelete();
-            showAllCart();
-            basket.setId(scanner.nextInt());
-            context.getBasketRepository().deleteBasket(basket);
-            showAllCart();
-            calculateAllPrice();
+
+
+            Basket basket = new Basket();
+            menu.showMassageDelete();
+            int selectNumber = scanner.nextInt();
+            if (selectNumber == 1) {
+                ShopContext context = new ShopContext();
+                menu.choseMassageDelete();
+                showAllCart();
+                basket.setId(scanner.nextInt());
+                context.getBasketRepository().deleteBasket(basket);
+                showAllCart();
+                calculateAllPrice();
+            } else {
+                calculateAllPrice();
+            }
         }
-        else {
-            calculateAllPrice();
-        }
-    }
+
 
     private static void calculateAllPrice() throws SQLException, ClassNotFoundException {
         menu.showMassageCalculatePrice();
         ShopContext context = new ShopContext();
-        context.getBasketRepository().calculatePrice();
+        System.out.println(context.getBasketRepository().calculatePrice());
     }
 
     private static void addCart() throws SQLException, ClassNotFoundException {
@@ -81,11 +93,14 @@ public class Main {
             ShopContext context = new ShopContext();
             Basket basket = new Basket();
             basket.setId(scanner.nextInt());
+
             menu.numberOfProduct();
             basket.setNumberPurchases(scanner.nextInt());
             data += basket.getNumberPurchases();
             if(data <= 5) {
+
                 basket = context.getBasketRepository().insertBasket(basket);
+                context.getBasketRepository().reduceInventory(basket);
                 menu.tryAgainAddCart();
                 int selectNumber = scanner.nextInt();
                 if (selectNumber == 2) {
@@ -101,18 +116,22 @@ public class Main {
     }
 
     private static void showAllCart() throws SQLException, ClassNotFoundException {
+        ArrayList<Basket> basket1 = new ArrayList<>();
+        int i = 0;
         ShopContext context = new ShopContext();
-        BasketRepository basketRepository = new BasketRepository();
-        context.getBasketRepository().getCart();
-
+       basket1 =  context.getBasketRepository().getCart();
+        for ( i = 0; i < basket1.size(); i++) {
+            System.out.println(basket1.get(i));
+        }
+        i = 0;
     }
 
     private static void showAllProducts() throws SQLException, ClassNotFoundException {
         menu.showAllProduct();
-
+        ArrayList<Product> product2 = new ArrayList<>();
         ShopContext context = new ShopContext();
-        ProductsRepository productsRepository = new ProductsRepository();
         context.getProductsRepository().getAllProducts();
+
 
     }
 

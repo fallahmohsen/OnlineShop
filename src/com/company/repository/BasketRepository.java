@@ -1,6 +1,7 @@
 package com.company.repository;
 
 import com.company.domain.Basket;
+import com.company.domain.Product;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -26,7 +27,7 @@ public class BasketRepository {
         preparedStatement.executeUpdate();
         return basket;
     }
-    public List<Basket> getCart() throws SQLException {
+    public ArrayList<Basket> getCart() throws SQLException {
         String query = "select products.id, basket.number_purchases,products.name_products,products.price from basket join products on products.id = basket.id";
         PreparedStatement preparedStatement = connection.prepareStatement(query);
        ResultSet resultSet =  preparedStatement.executeQuery();
@@ -38,9 +39,9 @@ public class BasketRepository {
             basket1.setNameProduct(resultSet.getString(3));
             basket1.setPrice(resultSet.getInt(4));
             basket.add(basket1);
-            int i = 0;
-            System.out.println(basket.get(i));
-            i++;
+            //int i = 0;
+          //  System.out.println(basket.get(i));
+           // i++;
         }
         return basket;
     }
@@ -51,27 +52,38 @@ public class BasketRepository {
         preparedStatement.executeUpdate();
         return basket;
     }
-    public List<Basket> calculatePrice() throws SQLException {
-        String query = "select products.price from basket join products on products.id = basket.id";
+    public int calculatePrice() throws SQLException {
+        String query = "select products.price,basket.number_purchases from basket join products on products.id = basket.id";
         PreparedStatement preparedStatement = connection.prepareStatement(query);
         ResultSet resultSet = preparedStatement.executeQuery();
         Basket basket1 = new Basket();
-        ArrayList<Basket> basket = new ArrayList<>();
+       // ArrayList<Basket> basket = new ArrayList<>();
+        int data = 0;
         while (resultSet.next()){
-            basket1.setId(resultSet.getInt(1));
-            basket.add(basket1);
-
+            basket1.setPrice(resultSet.getInt(1));
+          //  basket.add(basket1);
+            data += resultSet.getInt(1)* resultSet.getInt(2);
         }
-        for(int i =0;i<basket.size();i++){
+    //    for(int i =0;i<basket.size();i++){
 
             
-        }
-        return basket;
+      //  }
+        return data;
     }
     public Basket clearAllBasket(Basket basket) throws SQLException {
         String query = "delete from basket";
         PreparedStatement preparedStatement = connection.prepareStatement(query);
         preparedStatement.executeUpdate();
         return basket;
+    }
+    public void reduceInventory(Basket basket) throws SQLException {
+        String query = "update products set inventory = ?  where id = ?";
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        preparedStatement.setInt(1,basket.getNumberPurchases());
+        preparedStatement.setInt(2,basket.getId());
+        preparedStatement.executeUpdate();
+
+
+
     }
 }

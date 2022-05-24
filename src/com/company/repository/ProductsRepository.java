@@ -16,7 +16,7 @@ public class ProductsRepository {
     public ProductsRepository(Connection connection){
      this.connection = connection;
     }
-    public List<Product> getAllProducts() throws SQLException ,ClassNotFoundException{
+    public ArrayList<Product> getAllProducts() throws SQLException ,ClassNotFoundException{
         PreparedStatement preparedStatement = connection.prepareStatement("select * from products");
         ResultSet resultSet = preparedStatement.executeQuery();
         ArrayList<Product> products = new ArrayList<>();
@@ -28,9 +28,9 @@ public class ProductsRepository {
             product.setInventory(resultSet.getInt(4));
             product.setPrice(resultSet.getInt(5));
             products.add(product);
-            int i = 0;
+           int i = 0;
             System.out.println(products.get(i));
-            i++;
+           i++;
            /* s1 = "id=\t"+resultSet.getInt(1)+"\t"+"category=\t"+resultSet.getString(2)+"\t"+"name product=\t "+resultSet.getString(3)+"\t"+"inventory=\t"+
                     resultSet.getInt(4)+"\t"+"price=\t"+resultSet.getInt(5);
             System.out.println(s1);
